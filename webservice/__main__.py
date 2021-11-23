@@ -2,6 +2,7 @@ import asyncio
 import os
 import sys
 import traceback
+import requests
 
 from aiohttp import web
 import cachetools
@@ -15,12 +16,25 @@ routes = web.RouteTableDef()
 async def handle_get(request):
     return web.Response(text="FINOS GitHub App - Org members sync")
 
+def build_csv(users, date, repo):
+    # TODO
+    return None
+
 @routes.post("/webhook")
 async def webhook(request):
     try:
-        body = await request.read()
-        print("---------")
+        body = await request.json()
         print(body)
+        print("---------")
+        repo = body['url'].split('/')[5]
+        action = body['action']
+        if action == 'closed':
+            comments = requests.get(body['issue']['comments_url'])
+            print(comments.json())
+            users = set([comment['user']['login'] for comment in comments])
+            date = comments[0]['created_at']
+            csv = build_csv(users, date, repo)
+            print(csv)
         return web.Response(status=200)
     except Exception as exc:
         traceback.print_exc(file=sys.stderr)

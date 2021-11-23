@@ -12,8 +12,8 @@ export GH_PAT="..."
 # To run the webhook and intercept events
 python3 -m webservice
 
-# To invite a user
-python3 webservice/gh-invite.py
+# To Run Org member sync
+python3 webservice/org_member_sync.py
 ```
 
 On a new terminal
