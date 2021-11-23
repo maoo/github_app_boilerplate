@@ -1,5 +1,5 @@
 {
-  "name": "GitHub App Boilerplate Repo",
-  "description": "A starter repo for building a GitHub App",
-  "repository": "https://github.com/mariatta/github_app_boilerplate"
+  "name": "FINOS GitHub App - Org members sync",
+  "description": "FINOS GitHub App - Org members sync",
+  "repository": "https://github.com/maoo/github_app_boilerplate"
 }
