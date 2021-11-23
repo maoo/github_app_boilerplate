@@ -19,4 +19,5 @@ for user in finos_members:
         remove_member.append(user)
 
 print (f"To Invite: {len(to_invite)}")
-print (f"To Remove as Member: {len(remove_member)}")
+print (f"To Remove as Member ({len(remove_member)}) ...")
+print(remove_member)

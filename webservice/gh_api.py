@@ -60,11 +60,3 @@ def invite_user(user,org):
       auth=HTTPBasicAuth(user, os.environ.get("GH_PAT")),
       headers=app_headers())
     print(f'Invited {user} to {org} - response {resp.status_code}')
-
-# user="TheJuanAndOnly99"
-# org="sessiontechnologies"
-
-# if not user in get_members_and_invites(org):
-#     invite_user(user,org)
-# else:
-#     print(f"skipped {user}")

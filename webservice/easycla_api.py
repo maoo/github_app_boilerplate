@@ -11,16 +11,14 @@ def app_headers():
 
 def get_entries(url):
     resp = requests.get(easycla_prod_prefix + url + "pageSize=100", headers=app_headers()).json()
-    # print("========")
-    # print(resp)
-    # print("========")
     ret = []
     if 'list' in resp:
         ret = resp['list']
     elif 'signatures' in resp:
         ret = resp['signatures']
-    if 'nextKey' in resp:
-        return ret + get_entries(url + f"nextKey={resp['nextKey']}")
+    # TODO - test
+    # if 'lastKeyScanned' in resp:
+    #     return ret + get_entries(url + f"nextKey={resp['lastKeyScanned']}")
     return ret
 
 def get_easycla_gh_usernames():
@@ -28,6 +26,7 @@ def get_easycla_gh_usernames():
     icla_signatures_raw = get_entries(icla_signatures_url)
     iclas = [i['github_username'] for i in icla_signatures_raw]
     easycla_gh_users = iclas
+    print(f"Found {len(iclas)} ICLAs!")
 
     cclas_url = f"/signatures/project/{cla_group_id}?signatureType=ccla&signed=true&approved=true&"
     cclas_raw = get_entries(cclas_url)
