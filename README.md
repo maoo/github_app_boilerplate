@@ -5,8 +5,8 @@
 ```
 pip3 install -r requirements.txt
 
-export GH_APP_ID=153610
-export GH_PRIVATE_KEY="./finos-gh-org-sync.2021-11-22.private-key.pem"
+export GH_APP_ID=...
+export GH_PRIVATE_KEY=...
 export GH_PAT="..."
 
 # To run the webhook and intercept events

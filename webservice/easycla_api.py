@@ -1,6 +1,9 @@
 import requests
+import os
 
-easycla_prod_prefix = "https://pcc-bff.platform.linuxfoundation.org/production/api/cla-services/"
+easycla_prod_prefix = os.environ.get("EASY_CLA_API_PREFIX")
+cla_group_id = os.environ.get("EASY_CLA_GROUP_ID") 
+token = os.environ.get("EASY_CLA_TOKEN")
 
 def app_headers():
     headers = {"Authorization": f"Bearer {token}"}
