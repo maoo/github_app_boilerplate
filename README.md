@@ -5,7 +5,6 @@
 ```
 pip3 install -r requirements.txt
 
-# export GH_SECRET=11d1392f039276b9c85847198187e74da378ec66
 export GH_APP_ID=153610
 export GH_PRIVATE_KEY="./finos-gh-org-sync.2021-11-22.private-key.pem"
 export GH_PAT="..."
