@@ -10,15 +10,20 @@ def app_headers():
     return headers
 
 def get_entries(url):
-    resp = requests.get(easycla_prod_prefix + url + "pageSize=100", headers=app_headers()).json()
+    resp = requests.get(easycla_prod_prefix + url + "pageSize=100", headers=app_headers())
+    if resp.status_code != 200:
+        print("Error fetching EasyCLA entries...")
+        print(resp.text)
+        return []
+    resp = resp.json()
     ret = []
     if 'list' in resp:
         ret = resp['list']
     elif 'signatures' in resp:
         ret = resp['signatures']
     # TODO - test
-    # if 'lastKeyScanned' in resp:
-    #     return ret + get_entries(url + f"nextKey={resp['lastKeyScanned']}")
+    if 'lastKeyScanned' in resp and len(ret) == 100:
+        return ret + get_entries(url + f"nextKey={resp['lastKeyScanned']}&")
     return ret
 
 def get_easycla_gh_usernames():
